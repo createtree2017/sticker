@@ -1,6 +1,6 @@
 {
-  "name": "sticker-node-proxy",
-  "version": "1.0.0",
+  "name": "sticker-node-proxy-debug",
+  "version": "1.0.1",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

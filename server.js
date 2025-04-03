@@ -12,6 +12,10 @@ const STABILITY_API_KEY = process.env.STABILITY_API_KEY;
 app.post('/generate-sticker', async (req, res) => {
   const { imageBase64, style } = req.body;
 
+  console.log("🔥 요청 도착!");
+  console.log("👉 받은 스타일:", style);
+  console.log("👉 받은 이미지 길이:", imageBase64 ? imageBase64.length : "없음");
+
   const stylePrompts = {
     kawaii: "cute baby sticker illustration, pastel colors, kawaii style",
     anime: "anime chibi baby sticker with big eyes",
@@ -38,12 +42,14 @@ app.post('/generate-sticker', async (req, res) => {
     });
 
     const data = await response.json();
+    console.log("📦 Stability 응답:", data);
     res.json({ imageUrl: data.image });
   } catch (err) {
+    console.error("❌ Stability 호출 오류:", err);
     res.status(500).json({ error: err.message });
   }
 });
 
 app.listen(4000, () => {
-  console.log("Server running on port 4000");
+  console.log("✅ Server running on port 4000");
 });
